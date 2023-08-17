@@ -1,0 +1,41 @@
+from collections import deque
+
+N=int(input())
+region=[list(map(int,input())) for _ in range(N)]
+#좌우상하 순서
+move=[(0,-1),(0,1),(-1,0),(1,0)]
+
+def Bfs(y,x):
+    que=deque()
+    que.append((y,x))
+    region[y][x] = 0   
+    count=1
+    
+
+    while que:
+        y,x = que.popleft()
+
+        for i in range(4):
+            move_y= y + move[i][0]
+            move_x= x + move[i][1]
+            if 0<= move_y <N and 0<= move_x <N:
+                if region[move_y][move_x] == 1:
+                    que.append((move_y,move_x))
+                    region[move_y][move_x] = 0
+                    count += 1
+
+    return count
+
+home_count=0
+home_list=[]
+
+for i in range(N):
+    for k in range(N):
+        if region[i][k] == 1:
+            home_list.append(Bfs(i,k))
+            home_count +=1
+
+print(home_count)
+
+for i in sorted(home_list):
+    print(i)
