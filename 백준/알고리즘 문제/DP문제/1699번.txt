@@ -1,0 +1,45 @@
+<test1은 내가 도전했는데 틀린방법,test2가 정답, 12or32를 넣어보면 틀린방법 맞은방법 결과가 다르다>
+
+import math
+N=int(input())
+def test1(n):
+    result=[0]
+    for i in range(1,n+1):
+        num=int(math.sqrt(i))
+        if num**2 ==i:
+            result.append(1)
+        else:
+            result.append(1+result[i-(num**2)])
+    print('틀-리스트',result)
+    return result[n]
+print('틀린',test1(N))
+
+
+def test2(n):
+    dp = [x for x in range (n+1)]  #3번
+    for i in range(1,n+1):
+        for j in range(1,i):
+            if j*j > i :
+                break               # 1번
+            if dp[i] > dp[i-j*j] + 1 :   #2번
+                dp[i] = dp[i-j*j] + 1
+    print('맞-리스트',dp)
+    return dp[n]
+print('맞은',test2(N))
+
+1번=> j제곱이 i보다 크면 그 이상은 할 필요없으니 continue말고 break, 
+         >= 아닌 이유는 예를들어 i가 4, j가2일때 2제곱으로 한번에 가능이니 j가 2일때도 밑에 if문 체크 해야해서
+
+2번=>dp[i-j*j] + 1 부분은  예를들어 보면 4는 2의 제곱 한번에 가능이니 1.   i=4 ,j=2일때 dp[0]+1 =>0+1 이다 
+        여기서 1더해준 이유는 j*j활동을 한번해서 더해준거다
+
+3번=> 모든 수는 1의 제곱수로 구해질 수 있으므로 처음에 dp값은 1~n 까지로 초기화한다.
+
+
+
+
+dp[i] > dp[i-j*j] + 1  이 수식은 제곱수로 표현할 때 가장 항의 개수가 작은 j 를 찾는 것이다.
+
+*즉, 예를 들어 dp[6] = dp[6 - 2*2] + 1 = dp[2] + 1이다. 여기서 1을 더해 주는 이유는 2*2 의 경우를 더한 것이기 때문이다. 
+      2*2 로 더하는 경우 (1가지) + 나머지 dp[2] 의 경우를 더한다고 볼 수 있다.
+(https://jyeonnyang2.tistory.com/50) 해설 참고사이트

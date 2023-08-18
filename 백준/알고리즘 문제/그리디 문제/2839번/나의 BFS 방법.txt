@@ -1,0 +1,21 @@
+from collections import deque
+N=int(input())
+visited=[0]*(N+1)
+
+que=deque()
+que.append(0)
+
+while que:
+    num=que.popleft()
+
+    if num == N:
+        print(visited[num])      
+        break
+
+    for i in (num+3,num+5):
+        if i <= N and not visited[i]:
+            que.append(i)
+            visited[i] = visited[num]+1
+
+else:
+    print(-1)

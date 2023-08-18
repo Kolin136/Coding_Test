@@ -1,0 +1,14 @@
+N=int(input())
+
+meeting=sorted([tuple(map(int,input().split())) for _ in range(N)], key=lambda x:(x[1], x[0]))
+result = end = 0
+
+for s,e in meeting:
+    if s >= end:
+        result +=1
+        end = e
+
+print(result)
+
+
+문제 입력데이터가 이미 정렬된거여도 풀땐 정렬 하는코드 적어야한다

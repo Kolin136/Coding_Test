@@ -1,0 +1,17 @@
+T=int(input())
+
+def num_sum(num,method_list):
+    result=[1,1]
+
+    for i in range(2,num+1):
+        result.append(0)
+        for k in method_list:
+            if i-k >= 0:
+                result[i] += result[i-k]
+
+    return result[num]
+
+
+for i in range(T):
+    n=int(input())
+    print(num_sum(n,[1,2,3]))

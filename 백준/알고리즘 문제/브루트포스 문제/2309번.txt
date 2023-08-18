@@ -1,0 +1,14 @@
+dwarf=sorted([int(input()) for _ in range(9)])
+dwarf_sum=sum(dwarf)
+def brute():
+    for o in range(8,-1,-1):
+        for k in range(0,o):         
+            if dwarf_sum-dwarf[o]-dwarf[k] == 100:
+                del dwarf[o]
+                del dwarf[k]
+                return
+brute()
+for i in dwarf:
+    print(i)
+
+

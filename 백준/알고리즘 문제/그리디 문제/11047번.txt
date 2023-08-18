@@ -1,0 +1,10 @@
+N,K=map(int,input().split())
+count=0
+money_list=[]
+for _ in range(N):
+    money_list.append(int(input()))
+
+for i in range(N-1,-1,-1):
+    count += K//money_list[i]
+    K %=money_list[i]       
+print(count)

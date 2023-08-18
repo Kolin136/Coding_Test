@@ -1,0 +1,41 @@
+a=input()
+some_list=[]
+
+num=""
+
+for i in a:
+    if i != '+' and i != '-':
+        num+=i
+    else:        
+        some_list.append(int(num))
+        num=""
+        some_list.append(i)
+some_list.append(int(num))
+
+total=some_list[0]
+check=0
+sign=None
+
+for i in range(1,len(some_list)):
+    if some_list[i] =='-':
+        if sign is None:
+            sign= -1
+        else:
+            check*=sign
+            total+=check
+            check=0
+
+    elif some_list[i] =='+':
+        continue
+    else:
+        if sign is None:
+            total+=some_list[i]
+        else:
+            check+=some_list[i]
+
+if sign == -1:
+    check*=sign
+    total+=check
+else:
+    total+=check
+print(total)

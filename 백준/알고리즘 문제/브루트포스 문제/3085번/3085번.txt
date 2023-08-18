@@ -1,0 +1,61 @@
+import sys
+N=int(input())
+candy=[list(sys.stdin.readline()) for _ in range(N)]
+
+Max_count=0
+
+def check(candy):
+    n=len(candy)
+    count=1
+    for i in range(n):
+        check_count=1
+        for k in range(1,n):
+            if candy[i][k] == candy[i][k-1]: 
+                check_count +=1
+
+            else:
+                check_count = 1
+
+            if check_count > count:
+                count= check_count
+
+
+        check_count=1
+        for k in range(1,n):
+            if candy[k][i] == candy[k-1][i]: 
+                check_count +=1
+
+            else:
+                check_count = 1
+
+            if check_count > count:
+                count= check_count
+            
+    return count
+
+
+
+for i in range(N):
+    for k in range(N):
+        if k+1 < N:
+            candy[i][k],candy[i][k+1] = candy[i][k+1],candy[i][k]
+
+            temp = check(candy)
+
+            if temp > Max_count:
+                Max_count = temp
+
+            candy[i][k],candy[i][k+1] = candy[i][k+1],candy[i][k]
+
+        if i+1 < N:
+            candy[i][k],candy[i+1][k] = candy[i+1][k],candy[i][k]
+
+            temp = check(candy)
+
+            if temp > Max_count:
+                Max_count = temp
+
+            candy[i][k],candy[i+1][k] = candy[i+1][k],candy[i][k]
+
+print(Max_count)
+
