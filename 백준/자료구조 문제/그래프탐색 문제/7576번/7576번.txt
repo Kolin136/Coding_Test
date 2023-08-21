@@ -1,0 +1,33 @@
+from collections import deque
+M,N=map(int,input().split())
+graph=[list(map(int,input().split())) for _ in range(N)]
+count=0
+que=deque()
+move=[(1,0),(-1,0),(0,1),(0,-1)]
+
+for i in range(N):
+    for k in range(M):
+        if(graph[i][k]==1):
+            que.append((i,k,0))
+
+while que:
+    y,x,c= que.popleft()
+    
+    if(c>count):
+        count=c
+    
+    for i in move:
+        my= y+i[0]
+        mx= x+i[1]
+        if(0<=my<N and 0<=mx<M):
+            if(graph[my][mx]==0):
+                que.append((my,mx,c+1))
+                graph[my][mx]=1
+
+for i in range(N):
+    for k in range(M):
+        if(graph[i][k]==0):
+            count=-1
+
+            
+print(count)
