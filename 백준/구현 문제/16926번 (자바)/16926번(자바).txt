@@ -1,0 +1,60 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) throws Exception {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int R = Integer.parseInt(st.nextToken());
+
+        //넣는 순서가 왼쪽,위쪽,오른쪽,아래쪽(처리순서가 시계방향으로)
+        int[][] move={{0,1},{1,0},{0,-1},{-1,0}};
+
+        int[][] list = new int[N][M];
+        //list배열 값들 설정
+        for(int i=0; i<N; i++){
+            st=new StringTokenizer(bf.readLine());  
+            for(int k=0; k<M; k++){
+                list[i][k]=Integer.parseInt(st.nextToken());
+            }
+        }
+        //회전시켜야하는 그룹(테두리부터 안쪽)횟수
+        int min = Math.min(N, M)/2;
+
+       for(int i=0; i<R; i++){
+            for(int k=0; k<min; k++){
+                int x=k , y=k;
+                int idx=0;
+                int save=list[y][x];
+                while(idx<4){
+                    int mx= x+move[idx][1];
+                    int my= y+move[idx][0];
+
+                    if(k<=mx && mx<M-k && k<=my && my<N-k ){
+                        list[y][x]=list[my][mx];
+                        x=mx;
+                        y=my; 
+                    }
+                    else {
+                        idx++;
+                    }
+
+                }
+                list[k+1][k]=save;
+            }
+       }
+
+
+
+        for(int i=0; i<N; i++) {
+    		for(int j=0; j<M; j++) {
+    			System.out.print(list[i][j] + " ");
+    		}
+    		System.out.println();
+    	}
+         
+    }   
+}
