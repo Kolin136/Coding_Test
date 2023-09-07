@@ -1,0 +1,29 @@
+from collections import deque
+N,K=map(int,input().split())
+que=deque()
+
+
+class Bfs:
+    def __init__(self,num,count):
+        self.num=num
+        self.count=count
+
+    def search(self):
+        while que:
+            data=que.popleft()
+
+            if data.num == K:
+                print(data.count)
+                break
+
+            que.append(Bfs(data.num-1,data.count+1))
+            que.append(Bfs(data.num+1,data.count+1))  
+            que.append(Bfs(data.num*2,data.count+1))
+            
+        return
+
+
+start=Bfs(N,0)
+que.append(start)
+
+start.search()

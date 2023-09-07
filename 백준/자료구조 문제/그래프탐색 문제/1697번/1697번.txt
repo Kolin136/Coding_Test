@@ -1,0 +1,26 @@
+from collections import deque
+N,K=map(int,input().split())
+Max = 100000
+visited = [0]*(Max+1)
+
+def Bfs():
+    que = deque()
+    que.append(N)
+
+    while que:
+        data= que.popleft()
+
+        if data == K:
+            print(visited[data])
+            break
+
+        for i in (data-1, data+1, data*2):
+            if 0 <= i <= Max and not visited[i]:
+                visited[i] = visited[data] + 1
+                que.append(i)
+Bfs()
+
+# Bfs함수 for문안 조건문에서 if not visited[i] and 0 <= i <= Max 하면 런타임 에러 나는 이유는 
+# 파이썬에서 논리 연산자 사용할때 첫번째 항이 거짓이면 두번째 항은 체크하지 않고 넘어가기 때문에 
+# 첫번째항에  덜 걸리는 조건부터 적어야하는듯. 
+# 그러므로 비교 연산자가 인덱스값 가져오는것보다 빠르니 비교 연산자부터 적고 두번째항에는 인덱스값 가져오는거 적는다
