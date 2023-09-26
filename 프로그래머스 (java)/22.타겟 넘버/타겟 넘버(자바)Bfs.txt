@@ -1,0 +1,53 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr={1,1,1,1,1};
+        int[] arr1={4,1,2,1}; 
+        
+        System.out.println(a2.solution(arr,3));
+        System.out.println(a2.solution(arr1,4));
+        
+    }   
+}
+
+class Solution {
+    class Pair{
+        int num;
+        int level;
+
+        Pair(int num,int level){
+            this.num=num;
+            this.level=level;
+        }
+    }
+
+    public int solution(int[] numbers, int target) {
+        int answer=0;
+        
+        Queue<Pair> que = new LinkedList<>();
+        que.add(new Pair(0,0));
+
+        while(!que.isEmpty()){
+            Pair check = que.poll();
+            
+            if(check.level == numbers.length){
+                if(check.num== target){
+                    answer+=1;
+                  }
+                continue;
+              }
+            
+            que.add(new Pair(check.num+ numbers[check.level],check.level+1 ));
+            que.add(new Pair(check.num- numbers[check.level],check.level+1 ));
+
+        }
+
+        return answer;
+    }
+    
+}
+

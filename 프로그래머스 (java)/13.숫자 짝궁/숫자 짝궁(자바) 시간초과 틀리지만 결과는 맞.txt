@@ -1,0 +1,49 @@
+import java.util.*;
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        // String[] arr = {"mumu", "soe", "poe", "kai", "mine"};
+        // String[] command ={"kai", "kai", "mine", "mine"};
+        
+        System.out.println(a2.solution("100","2345") );
+        System.out.println(a2.solution("100","203045") );
+        System.out.println(a2.solution("100","123450") );
+        System.out.println(a2.solution("12321","42531") );
+        System.out.println(a2.solution("5525","1255") );
+        
+        
+    }
+}
+class Solution {
+    public String solution(String X, String Y) {
+        String answer = "";
+
+        List<String> result=new ArrayList<>();
+
+        String min_str= null;
+        String max_str= null;
+        if(X.length()<Y.length()){min_str=X; max_str=Y;}
+        else {min_str=Y; max_str=X;}
+
+        for (char c : min_str.toCharArray()) {
+           if( max_str.contains(String.valueOf(c)) ){
+                max_str= max_str.replaceFirst(String.valueOf(c), "");
+                result.add(String.valueOf(c));
+           }
+            
+        }
+           
+        result.sort(Collections.reverseOrder());
+
+        if(result.isEmpty()){
+            return "-1";
+        }
+        
+        answer=String.join("",result);
+        answer=String.valueOf(Integer.parseInt(answer));
+
+        return answer;
+    }
+}

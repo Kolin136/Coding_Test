@@ -1,0 +1,26 @@
+def solution(players, callings):
+    key_name={}
+    key_rank={}
+    for i,j in enumerate(players):
+        key_name[j]=i
+        key_rank[i]=j
+    
+    for k in callings:
+        idx=key_name[k]  #부른 사람 등수
+        m_idx=idx-1 #부른사람 앞에있는 순위
+        m_name=key_rank[m_idx]   # 부른사람 앞에 있는 이름
+
+        key_name[k]=m_idx
+        key_name[m_name]=idx
+
+        key_rank[m_idx]=k
+        key_rank[idx]=m_name
+    
+    return list(key_rank.values())
+  
+        
+
+
+    
+    
+solution(["mumu", "soe", "poe", "kai", "mine"],["kai", "kai", "mine", "mine"])

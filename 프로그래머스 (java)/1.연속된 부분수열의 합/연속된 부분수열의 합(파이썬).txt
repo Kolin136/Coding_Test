@@ -1,0 +1,22 @@
+def solution(sequence, k):
+    answer = [0,1000000]
+    s_idx=0; e_idx=-1
+    check=0
+    
+    while(True):
+        if(check<k):
+            e_idx+=1
+            if(e_idx>len(sequence)-1):
+                break
+            check+=sequence[e_idx]
+        else:
+            check-=sequence[s_idx]
+            s_idx+=1
+            
+            
+        if(check==k):
+            if(answer[1]-answer[0]>e_idx-s_idx):
+                answer[0]=s_idx
+                answer[1]=e_idx   
+    
+    return answer

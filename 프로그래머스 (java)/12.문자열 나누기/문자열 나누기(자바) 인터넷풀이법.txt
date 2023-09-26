@@ -1,0 +1,39 @@
+import java.util.*;
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        // String[] arr = {"mumu", "soe", "poe", "kai", "mine"};
+        // String[] command ={"kai", "kai", "mine", "mine"};
+        System.out.println(a2.solution("banana") );
+        System.out.println(a2.solution("abracadabra") );
+        System.out.println(a2.solution("aaabbaccccabba") );
+        System.out.println(a2.solution("cdaaabb") );
+        
+        
+    }
+}
+
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+
+        char c = s.charAt(0);
+        int same=0, differ=0;
+        
+
+        for (int i = 0; i < s.length(); i++) {
+            if(same == differ){
+                answer+=1;
+                c= s.charAt(i);
+            }
+            if(c ==s.charAt(i)) same+=1;
+            else differ+=1;
+            
+        }
+
+
+        return answer;
+    }
+}

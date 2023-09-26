@@ -1,0 +1,47 @@
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr={1,1,1,1,1};
+        int[] arr1={4,1,2,1}; 
+        
+        System.out.println(a2.solution(arr,3));
+        System.out.println(a2.solution(arr1,4));
+        
+    }   
+}
+class Solution {
+    static int answer;
+    static int[] list;
+    static int result;
+
+    public int solution(int[] numbers, int target) {
+        answer=0;
+        list=numbers;
+        result=target;
+        
+
+        Dfs(0,0);
+
+
+
+        return answer;
+    }
+
+    public static int Dfs(int num,int level){
+        if(level==list.length){
+            if(num==result){
+                answer+=1;
+            }
+            return 0;
+        }
+
+        Dfs(num+list[level],level+1);
+        Dfs(num-list[level],level+1);
+
+
+        return 0;
+
+    }
+
+}
+

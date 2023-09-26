@@ -1,0 +1,76 @@
+import java.io.*;
+import java.util.*;
+
+
+public class abc2 {
+    static int[][] move={{0,1},{0,-1},{1,0},{-1,0}};
+   
+    public static void main(String[] args) throws Exception {
+
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(bf.readLine());
+    
+    int[][] graph =new int[N][N];
+    List<Integer> house_list=new ArrayList<>();
+    int house_count=0;
+    
+   
+    for (int i = 0; i < N; i++) {
+        String[] graph_num = bf.readLine().split("");
+        for (int j = 0; j < N; j++) {
+            graph[i][j]= Integer.parseInt(graph_num[j]);
+            }
+        }
+  
+
+    for (int q = 0; q < N; q++) {
+
+        for (int k = 0; k < N; k++) {
+            if(graph[q][k]==1){
+                house_list.add(Bfs(graph,q,k));
+                house_count+=1;
+            }
+            
+        }
+        
+    }    
+    System.out.println(house_count);
+    house_list.sort(null);
+    for (Integer i : house_list) {
+        System.out.println(i);
+        
+    }
+
+    }
+
+
+
+
+
+    static int Bfs(int[][] graphs,int y,int x){
+        int result=1;
+        Queue<int[]> que = new LinkedList<>();
+        que.add(new int[] {y,x});
+        graphs[y][x]=0;
+
+        while(!que.isEmpty()){
+            int[] po = que.poll();
+
+            for (int[] m : move) {
+                int m_x= po[1]+m[1];
+                int m_y= po[0]+m[0];
+                if( (0<=m_x && m_x< graphs.length) && (0<=m_y && m_y< graphs.length)){
+                    if(graphs[m_y][m_x] !=0){
+                        result+=1;
+                        graphs[m_y][m_x]=0;
+                        que.add(new int[] {m_y,m_x});
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+}
+

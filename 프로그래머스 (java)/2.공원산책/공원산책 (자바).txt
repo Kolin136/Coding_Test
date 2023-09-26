@@ -1,0 +1,74 @@
+import java.util.Arrays;
+
+public class test2 {
+
+    public static void main(String[] args) {
+        Solution test = new Solution();
+        String[] arr1={"SOO","OOO","OOO"};
+        String[] arr2={"E 2","S 2","W 1"};
+        
+        int[] result= test.solution(arr1, arr2);
+        System.out.println(Arrays.toString(result));
+        
+
+    }
+}
+
+    class Solution {
+        public int[] solution(String[] park, String[] routes) {
+            int mx=0;
+            int my=0;
+            char[][] park_list = new char[park.length][park[0].length()];
+
+            //시작 위치 찾기
+            for (int i = 0; i < park.length; i++) {
+                park_list[i] = park[i].toCharArray();
+                int a=park[i].indexOf("S");
+                if(a != -1){
+                    mx=i;
+                    my=a;  
+                }
+            }
+
+            for (String move : routes) {
+                int robot_move= Integer.parseInt(move.split(" ")[1]);
+                String direction = move.split(" ")[0];
+                
+                
+                int nx = mx;
+                int ny = my;
+            
+                for(int i = 0; i < robot_move; i++){
+                    if(direction.equals("E")){
+                        ny++;
+                    }
+                    if(direction.equals("W")){
+                        ny--;
+                    }
+                    if(direction.equals("S")){
+                        nx++;
+                    }
+                    if(direction.equals("N")){
+                        nx--;
+                    }
+                    if(ny >=0 && nx >=0 && nx < park_list.length && ny < park_list[0].length){
+                        if(park_list[nx][ny] == 'X'){
+                            break;
+                        }
+                        // 범위내 & 장애물 x
+                        if(i == robot_move-1){
+                            mx = nx;
+                            my = ny;
+                        }
+                    }
+                    else{
+                        break;
+                    }
+
+                }
+            }
+            int[] answer = {mx,my};
+            return answer;
+            
+        }
+    }

@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[][] arr={{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
+        int[][] arr1={{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
+        
+        System.out.println(a2.solution("143"));
+        System.out.println(a2.solution("011"));
+        
+    }   
+}
+
+
+class Solution {
+    static HashSet<Integer> num_set = new HashSet<>();
+
+    public int solution(String numbers) {
+        
+        int answer = 0;
+
+        recursion("",numbers);
+        Iterator<Integer> is =num_set.iterator();
+
+        while(is.hasNext()){
+            int is_num=is.next();
+            if(decimal_check(is_num)){
+                answer+=1;
+            }
+        }
+
+        num_set.clear();
+
+        return answer;
+    }
+
+    static void recursion(String temp,String str_num){
+        int n=str_num.length();
+        if(!temp.equals("")){
+            num_set.add(Integer.parseInt(temp));
+        }
+        for (int i = 0; i < str_num.length(); i++) {
+            recursion(temp+str_num.charAt(i) ,str_num.substring(0, i)+str_num.substring(i+1,n));
+        }
+    }
+
+
+    static boolean decimal_check(int n) {
+        if(n<2) return false;
+        for (int i = 2; i < n; i++) {
+            if(n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

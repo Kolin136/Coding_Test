@@ -1,0 +1,13 @@
+# def solution(priorities, location):
+#     queue =  [(i,p) for i,p in enumerate(priorities)] # 인덱스와 값 같이 저장
+#     answer = 0
+#     while True:
+#         cur = queue.pop(0)
+#         if any(cur[1] < q[1] for q in queue): # 큰 값이 하나라도 있으면
+#             queue.append(cur)  # 다시 추가
+#         else:  # 큰 값이 없으면
+#             answer += 1   # 카운트 증가 (빼냄)
+#             if cur[0] == location:  # 이게 타겟 값이면
+#                 return answer  # 정답 리턴
+            
+# print(solution([1, 1, 9, 1, 1, 1],0))

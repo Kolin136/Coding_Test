@@ -1,0 +1,20 @@
+def solution(wallpaper):
+    answer = []
+    w_min=50; w_max=0
+    h_min=50; h_max=0
+    
+    for i in range(len(wallpaper)):
+        for k in range(len(wallpaper[i])):
+            if(wallpaper[i][k]=='#'):
+                if(w_min>k): w_min=k
+                if(w_max<k+1): w_max=k+1
+                
+                if(h_min>i): h_min=i
+                if(h_max<i+1): h_max=i+1
+    
+    answer.append(h_min)
+    answer.append(w_min)
+    answer.append(h_max)
+    answer.append(w_max)
+    
+    return answer

@@ -1,0 +1,83 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) throws Exception {
+        HashMap<String,ArrayList<String>> tree = new HashMap<>();
+        
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(bf.readLine());
+
+        //해시맵으로 첫번째는 알파벳 key 두번째,새번째는 해당 key의 알파벳 or "." 값
+        // value리스트에 인덱스 0번째는 왼쪽 자식 인덱스1번째는 오른쪽 자식
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st= new StringTokenizer(bf.readLine());
+            String one= st.nextToken();
+            String two= st.nextToken();
+            String three= st.nextToken();
+
+                tree.computeIfAbsent(one,k-> new ArrayList<>()).add(two);
+                tree.computeIfAbsent(one,k-> new ArrayList<>()).add(three);
+            
+        }
+        
+    
+        pre(tree,"A");
+        System.out.println("");
+        in(tree,"A");
+        System.out.println("");
+        post(tree,"A");
+
+    }   
+    // 자식이 "."이면 넘어가고, 그게 아니면 재귀적으로 그 값으로 호출
+    static void pre(HashMap<String,ArrayList<String>> dic,String start){
+        System.out.print(start);
+        
+        if(!dic.get(start).get(0).equals(".")){
+            String str= dic.get(start).get(0);
+            pre(dic,str);
+        }
+        if(!dic.get(start).get(1).equals(".")){
+            String str= dic.get(start).get(1);
+            pre(dic,str);
+        }
+    }
+
+    static void in(HashMap<String,ArrayList<String>> dic,String start){
+       
+        if(!dic.get(start).get(0).equals(".")){
+            String str= dic.get(start).get(0);
+            in(dic,str);
+        }
+
+        System.out.print(start);
+
+        if(!dic.get(start).get(1).equals(".")){
+            String str= dic.get(start).get(1);
+            in(dic,str);
+        }
+
+    }
+
+    static void post(HashMap<String,ArrayList<String>> dic,String start){
+
+        if(!dic.get(start).get(0).equals(".")){
+            String str= dic.get(start).get(0);
+            post(dic,str);
+        }
+
+        if(!dic.get(start).get(1).equals(".")){
+            String str= dic.get(start).get(1);
+            post(dic,str);
+        }
+
+        System.out.print(start);
+    }
+
+
+
+}
+
+

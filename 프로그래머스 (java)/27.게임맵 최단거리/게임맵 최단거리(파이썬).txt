@@ -1,0 +1,27 @@
+from collections import deque
+def solution(maps):
+    answer = 0
+    move=[(0,1),(0,-1),(-1,0),(1,0)]
+    
+    que=deque()
+    que.append((0,0,1))
+    maps[0][0]=0
+    
+    while que:
+        x,y,count=que.popleft()
+        
+        if(x==len(maps[0])-1 and y==len(maps)-1):
+            answer=count
+            break
+        
+        for i in move:
+            mx=x+i[1]
+            my=y+i[0]
+            if(0<=mx<len(maps[0]) and 0<=my<len(maps)):
+                if(maps[my][mx]==1):
+                    maps[my][mx]=0
+                    que.append((mx,my,count+1))
+    if answer ==0:
+        return -1
+    
+    return answer

@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        String[] arr = {"119", "97674223", "1195524421"};
+        String[] command ={"123","456","789"};
+        String[] command2 ={"12","123","1235","567","88"};
+        
+        System.out.println(a2.solution(arr));
+        System.out.println(a2.solution(command));
+        System.out.println(a2.solution(command2));
+             
+    }
+}
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean answer = true;
+        
+        HashMap<String,Boolean> check= new HashMap<>();
+        for (String num : phone_book) {
+            check.put(num,false);    
+        }
+
+        for (String n : phone_book) {
+            for (int i = 1; i < n.length(); i++) {
+                if(check.containsKey(n.substring(0, i))){
+                    return false;
+                }
+            }
+        }
+
+
+        return answer;
+    }
+}

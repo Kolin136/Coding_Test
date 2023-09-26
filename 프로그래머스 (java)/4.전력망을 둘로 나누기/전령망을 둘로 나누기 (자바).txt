@@ -1,0 +1,60 @@
+import java.util.*;
+
+class Solution {
+    static ArrayList<Integer>[] graph;
+    public int solution(int n, int[][] wires) {
+        int answer = n;   
+        graph = new ArrayList[n+1]; 
+        for (int i = 0; i <= n; i++) {
+            graph[i]=new ArrayList<>();
+        }
+      
+        for (int[] num : wires) {
+            int a = num[0];
+            int b= num[1];
+            graph[a].add(b);
+            graph[b].add(a);
+        }
+
+        for (int[] c_num : wires) {
+            int a = c_num[0];
+            int b= c_num[1];
+            graph[a].remove(b);
+            graph[b].remove(a);
+
+            int check = Bfs(1,n);
+            answer = Math.min( Math.abs(check-(n-check)) , answer );
+
+            graph[a].add(b);
+            graph[b].add(a);
+
+        }
+
+        return answer;
+    }
+
+
+    static int Bfs(int start,int size){
+        boolean visit[]= new boolean[size];
+        int count=1;
+
+        Deque<Integer> que =new ArrayDeque<>();
+        que.add(start);
+        visit[start]=true;
+        
+        while(!que.isEmpty()){
+            int num = que.poll();
+            for (int n : graph[num]) {
+                if(!visit[n]){
+                    visit[n]=true;
+                    que.add(n);
+                    count++;
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+}

@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) throws Exception {
+        Solution a2 = new Solution();
+        // int[][] arr={{1,0,1,1,1}, {1,0,1,0,1}, {1,0,1,1,1},{1,1,1,0,1},{0,0,0,0,1}};
+        // int[][] arr1={{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1},{1, 1, 1, 0, 0},{0, 0, 0, 1, 1}};
+       
+        int[] arr={1, 3, 2, 5, 4, 5, 2, 3};
+        int[] arr1={1, 3, 2, 5, 4, 5, 2, 3};
+
+        System.out.println(a2.solution(6,arr));
+        System.out.println(a2.solution(4,arr1)); 
+        // System.out.println(a2.solution("4177252841",4));
+
+       
+        
+    }   
+}
+
+
+class Solution {
+    public int solution(int k, int[] tangerine) {
+        int answer = 0;
+        HashMap<Integer,Integer> num_count = new HashMap<>();
+        for (int i : tangerine) {
+            num_count.put(i,num_count.getOrDefault(i, 0)+1);
+        }
+
+        List<Integer> value =new ArrayList<>(num_count.values());
+        value.sort(Collections.reverseOrder());
+       
+
+        for (Integer n : value) {
+            if(k>0){
+                k-=n;
+                answer+=1;
+            }
+            
+        }
+        
+        return answer;
+    }
+}

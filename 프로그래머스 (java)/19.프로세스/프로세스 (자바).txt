@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr={2, 1, 3, 2};
+        int[] arr1={1, 1, 9, 1, 1, 1}; 
+        
+        System.out.println(a2.solution(arr,2) );
+        System.out.println(a2.solution(arr1,0));
+       
+    }   
+}
+
+class Solution {
+    public int solution(int[] priorities, int location) {
+        Queue<Integer> que = new PriorityQueue<>(Comparator.reverseOrder());
+        Queue<Integer> originQueue = new LinkedList<>();
+        
+        for (int n : priorities) {
+            que.add(n);
+        }
+        for (int i = 0; i < priorities.length; i++) {
+            originQueue.add(i);
+        }
+        int answer = 1;
+        while(true){
+            int origin_idx= originQueue.poll();
+            int origin_value= priorities[origin_idx];
+
+            if(origin_value<que.peek()){
+                originQueue.add(origin_idx);
+            } 
+            else if(origin_value == que.peek()){
+                if(origin_idx == location ) return answer;
+                else {
+                    que.remove();
+                    answer+=1;
+                }
+            }
+        }
+    }
+}

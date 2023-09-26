@@ -1,0 +1,45 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+
+public class abc {
+    static HashMap<Integer,ArrayList<Integer>> tree = new HashMap<>();
+    public static void main(String[] args) throws Exception {
+        // HashMap<Integer,ArrayList<Integer>> tree = new HashMap<>();
+        
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(bf.readLine());
+
+        for (int i = 1; i < N; i++) {
+            StringTokenizer st= new StringTokenizer(bf.readLine());
+            int one= Integer.parseInt(st.nextToken());
+            int two= Integer.parseInt(st.nextToken());
+            
+            tree.computeIfAbsent(one,k-> new ArrayList<>()).add(two);
+            tree.computeIfAbsent(two,k-> new ArrayList<>()).add(one);
+   
+        }
+        
+        int[] result =new int[N+1];
+
+        check(1,result);
+        for (int i = 2; i <=N; i++) {
+            System.out.println(result[i]);
+        }
+    
+
+    }   
+
+    static void check(int k,int[] result){ 
+        for (int n : tree.get(k)) {
+            tree.get(n).remove(Integer.valueOf(k));
+            result[n]=k;
+            check(n, result);
+        }
+    }
+   
+}
+
+

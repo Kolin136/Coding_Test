@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+public class test2 {
+
+    public static void main(String[] args) {
+        Solution aa = new Solution();
+        int[] arr1={2,2,2,2,2};
+        int num=6;
+
+        int[] result= aa.solution(arr1, num);
+        System.out.println(Arrays.toString(result));
+
+    }
+}
+
+class Solution {
+    public int[] solution(int[] sequence, int k) {
+        int[] answer = {0,1000000};
+        int left=0;
+        int right=-1;
+        int check=0;
+
+        while(true){
+            if(check>k){
+                check -= sequence[left];
+                if(left>=sequence.length){break;}
+                left++;            
+            }
+            else{
+                right++;
+                if (right >=sequence.length){break;}
+                check += sequence[right];
+            }
+            if (check == k){
+                if(answer[1]-answer[0]>right-left){
+                    System.out.println(answer[1]-answer[0]);
+                    System.out.println(right-left);
+                    answer[0]=left;
+                    answer[1]=right;
+                    System.out.println("체크"+left+":"+right);
+                }
+
+            }
+
+        }
+        return answer;
+    }
+}
+
+    

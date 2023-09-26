@@ -1,0 +1,53 @@
+import java.util.*;
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        String arr = "(())()";
+        System.out.println(a2.solution(arr));
+        // arr=")()(";
+        // System.out.println(a2.solution(arr));
+    }
+}
+
+
+class Solution {
+    boolean solution(String s) {
+        boolean answer = true;
+
+        Queue<Character> que = new LinkedList<>();
+        
+        int check=0;
+        
+
+        for (char i : s.toCharArray()) {
+            que.add(i);
+        }
+
+        int que_size=que.size();
+
+        for (int k = 0; k < que_size; k++) {
+            
+            if(que.poll().equals('(')){
+                check+=1;
+            }
+            else{
+                check-=1;
+            }
+            
+            if(check<0){
+                answer=false;  
+                break;
+            }
+           
+        }
+
+        if(check !=0 ){
+            answer=false;
+        }
+
+
+        return answer;
+    }
+}

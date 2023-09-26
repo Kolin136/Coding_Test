@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        String[][] arr = {{"yellow_hat", "headgear"}, {"blue_sunglasses", "eyewear"}, {"green_turban", "headgear"}};
+        String[][] command ={{"crow_mask", "face"}, {"blue_sunglasses", "face"}, {"smoky_makeup", "face"},{"gdsgsd", "ffpg"}};
+        
+        
+        // System.out.println(a2.solution(arr));
+        System.out.println(a2.solution(command));  
+    }
+}
+
+class Solution {
+    public static int solution(String[][] clothes) {
+        int answer = 1;
+        HashMap<String,Integer> check= new HashMap<>();
+
+        for (String[] list : clothes) {
+            check.put(list[1],check.getOrDefault(list[1], 1)+1);
+        }
+        for (String key : check.keySet()) {
+            answer *=check.get(key);
+        }
+
+
+        return answer-1;
+    }
+}

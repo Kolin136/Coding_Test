@@ -1,0 +1,41 @@
+import java.util.*;
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr = {2, 1, 1, 2, 3, 1, 2, 3, 1};
+        
+        System.out.println(a2.solution(arr));
+       
+    }
+}
+
+
+class Solution {
+    public int solution(int[] ingredient) {
+        int answer = 0;
+
+        Stack<Integer> ingre_stack = new Stack<>();
+        for (int num : ingredient) {
+            ingre_stack.push(num);
+
+            if(ingre_stack.size() >=4 ){
+                if(ingre_stack.get(ingre_stack.size()-4)==1
+                && ingre_stack.get(ingre_stack.size()-3)==2
+                && ingre_stack.get(ingre_stack.size()-2)==3
+                && ingre_stack.get(ingre_stack.size()-1)==1
+                ){
+                    answer+=1;
+                    ingre_stack.pop(); ingre_stack.pop(); ingre_stack.pop(); ingre_stack.pop();
+                }
+
+
+            }
+
+
+        }
+
+        return answer;
+    }
+}

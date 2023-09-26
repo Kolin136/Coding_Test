@@ -1,0 +1,32 @@
+import java.util.Arrays;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr = {1, 5, 2, 6, 3, 7, 4};
+        int[][] com={{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+        System.out.println(Arrays.toString(a2.solution(arr, com)));
+       
+    }
+}
+
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
+        int idx=0;
+        
+        for (int[] i : commands) {
+            int[] list_copy = Arrays.copyOfRange(array, i[0]-1, i[1]);
+            
+            
+            Arrays.sort(list_copy);
+            
+            answer[idx]= list_copy[ i[2]-1 ];
+            idx+=1;
+        }
+
+       
+        return answer;
+    }
+}

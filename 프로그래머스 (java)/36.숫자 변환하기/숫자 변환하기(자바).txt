@@ -1,0 +1,41 @@
+import java.util.*;
+class Solution {
+    public int solution(int x, int y, int n) {
+        int answer = 0;
+        int[] visit=new int[y+1];
+        
+        Queue<Integer> que = new LinkedList<>();
+        que.add(x);
+        
+        if(x==y){
+            return 0;
+        }
+        
+        
+        while(!que.isEmpty()){
+            int num= que.poll();
+            if(num==y){
+                answer=visit[y];
+                break;
+            }
+            
+            int[] num_list={num*2,num*3,num+n};       
+            for(int i:num_list){
+                if(i<=y && visit[i]==0){
+                    que.add(i);
+                    visit[i]=visit[num]+1;
+                }
+                
+            }         
+        }
+        
+        if(answer==0){
+        answer=-1;
+        }
+        
+        
+        return answer;
+    }
+
+  
+}

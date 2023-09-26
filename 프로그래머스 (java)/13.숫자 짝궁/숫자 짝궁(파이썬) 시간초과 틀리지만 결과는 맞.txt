@@ -1,0 +1,36 @@
+def solution(X, Y):
+    answer = ''
+    x_dic={}
+    y_dic={}
+    result=[]
+    for i in X:
+        if i in x_dic:
+            x_dic[i]+=1
+        else:
+            x_dic[i]=1
+    for i in Y:
+        if i in y_dic:
+            y_dic[i]+=1
+        else:
+            y_dic[i]=1
+            
+    for i in x_dic.keys():
+        x_check= x_dic[i]
+        if i in y_dic:
+            y_check= y_dic[i]
+            check=min(x_check,y_check)
+            for _ in range(check):
+                result.append(i)
+            
+        else:
+            continue
+    
+    if not result:
+        return "-1"
+    else:
+        result.sort(reverse=True)
+        answer=str(int("".join(result)))
+    
+    
+    
+    return answer

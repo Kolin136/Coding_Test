@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        // int[][] arr={{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
+        // int[][] arr1={{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
+        int[] arr={4, 5, 5, 5, 5, 5, 5, 6};
+        int[] arr1={5,4,4,2,1};
+
+        System.out.println(a2.solution(arr));
+        // System.out.println(a2.solution(arr1));
+        
+    }   
+}
+
+
+class Solution {
+    public int[] solution(int[] answers) {
+        int a_count=0,b_count=0,c_count=0;
+    
+        Iterator<Integer> a_student = Arrays.asList(1,2,3,4,5).iterator();
+        Iterator<Integer> b_student = Arrays.asList(2,1,2,3,2,4,2,5).iterator();
+        Iterator<Integer> c_student = Arrays.asList(3,3,1,1,2,2,4,4,5,5).iterator();
+
+         for (int i : answers) {
+            if(i == a_student.next()) a_count+=1;
+            if(i == b_student.next()) b_count+=1;
+            if(i == c_student.next()) c_count+=1;
+
+            if(!a_student.hasNext()) a_student = Arrays.asList(1,2,3,4,5).iterator();
+            if(!b_student.hasNext()) b_student = Arrays.asList(2,1,2,3,2,4,2,5).iterator();
+            if(!c_student.hasNext()) c_student = Arrays.asList(3,3,1,1,2,2,4,4,5,5).iterator();
+            
+        }
+
+        int max_check = Math.max(a_count,Math.max(b_count,c_count));
+        List<Integer> checkList = new ArrayList<>();
+
+        if(max_check == a_count) checkList.add(1);
+        if(max_check == b_count) checkList.add(2);
+        if(max_check == c_count) checkList.add(3);
+        
+
+         int[] answer = new int[checkList.size()];
+
+
+        for (int k = 0; k < checkList.size(); k++) {
+            
+            answer[k]= checkList.get(k);
+        }
+
+     
+         return answer;
+    }
+}

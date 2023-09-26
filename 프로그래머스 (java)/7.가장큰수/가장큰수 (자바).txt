@@ -1,0 +1,37 @@
+import java.util.*;
+
+
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        int[] arr = {0, 0, 0,0};
+        int[] command ={3, 30, 34, 5, 9};
+        
+        System.out.println(a2.solution(arr));
+        System.out.println(a2.solution(command));
+        
+        
+        
+    }
+}
+
+class Solution {
+    public String solution(int[] numbers) {
+        String answer = "";
+
+        List<String> str_num = new ArrayList<>();
+
+        for (int n : numbers) {
+            str_num.add(String.valueOf(n));
+        }
+
+        str_num.sort((a, b) -> (b.repeat(3).compareTo(a.repeat(3))));
+        
+        if(str_num.get(0).equals("0")) return "0";
+        answer= String.join("",str_num);
+        
+        return answer;
+    }
+}

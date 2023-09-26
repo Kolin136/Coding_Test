@@ -1,0 +1,46 @@
+import java.util.*;
+
+
+public class abc {
+    public static void main(String[] args) {
+        Solution a2 = new Solution();
+        String[] arr = {"leo", "kiki", "eden"};
+        String[] command ={"eden", "kiki"};
+        
+        System.out.println(a2.solution(arr, command));
+        
+        String[] arr2={"mislav", "stanko", "mislav", "ana"};
+        String[] commend2={"stanko", "ana", "mislav"};
+        System.out.println(a2.solution(arr2, commend2));
+
+    }
+}
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
+
+        HashMap<String,ArrayList<Integer>> player = new HashMap<>();
+
+        //↓ computeIfAbsent 이용해서 해당 키의 값이 있으면 그 리스트에 i값을 추가하고 없으면 새로운 리스트 생성후 i값추가
+        for (int i = 0; i < participant.length; i++) {
+            player.computeIfAbsent (participant[i],k-> new ArrayList<>()).add(i);
+        }
+        //↓등수랑 상관없는 문제라 리스트 길이가 2이상이면 해당 키의 리스트 0번째 요소 삭제하고 2미만이면 player맵의 키,값 자체 삭제
+        for (String call : completion) {
+            if(player.get(call).size()<2){
+                player.remove(call);
+            } 
+            else{
+                player.get(call).remove(0);
+            }  
+        }
+        //↓ player맵의 요소 딱한개 남아서 keySet()이용
+        for (String key : player.keySet()) {
+            answer=key;
+        }
+
+
+        return answer;
+    }
+    
+}
