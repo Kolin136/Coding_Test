@@ -1,0 +1,15 @@
+import java.util.*;
+class Solution {
+    public String solution(String my_string) {
+        String answer = "";
+        HashSet<String> check= new LinkedHashSet<>();
+        for(String i : my_string.split("")) {
+            check.add(i);
+        }
+        
+        String[] array = check.toArray(new String[check.size()]);
+        answer=String.join("",array);
+
+        return answer;
+    }
+}

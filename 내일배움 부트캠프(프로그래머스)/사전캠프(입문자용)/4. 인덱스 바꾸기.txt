@@ -1,0 +1,18 @@
+class Solution {
+    public String solution(String my_string, int num1, int num2) {
+        String answer = "";
+        StringBuilder std= new StringBuilder();
+        std.append(my_string);
+        
+        char n1=my_string.charAt(num1);
+        char n2=my_string.charAt(num2);
+
+        std.setCharAt(num1, n2);
+        std.setCharAt(num2, n1);
+
+        answer=std.toString();
+
+
+        return answer;
+    }
+}

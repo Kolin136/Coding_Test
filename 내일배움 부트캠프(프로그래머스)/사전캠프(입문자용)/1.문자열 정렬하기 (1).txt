@@ -1,0 +1,22 @@
+import java.util.*;
+class Solution {
+    public int[] solution(String my_string) {
+        ArrayList<Character> list=new ArrayList<>();
+
+        for (char i : my_string.toCharArray()) {
+            if(48<=i && i<=57){
+                list.add(i);
+            }
+        }
+        Collections.sort(list);
+
+        int[] answer=new int[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            answer[i]=Character.getNumericValue(list.get(i));
+        }
+
+
+        return answer;
+    }
+}

@@ -1,0 +1,18 @@
+class Solution {
+    public String solution(String my_string) {
+        String answer = "";
+        StringBuilder std = new StringBuilder();
+
+        for(String i:my_string.split("")){
+            if(i.matches("[a-z]")){
+                std.append(i.toUpperCase());
+            }
+            else{
+                std.append(i.toLowerCase());
+            }
+        }
+        answer=std.toString();
+
+        return answer;
+    }
+}
