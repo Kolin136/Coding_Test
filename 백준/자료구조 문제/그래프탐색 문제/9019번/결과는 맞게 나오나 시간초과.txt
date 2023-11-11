@@ -1,0 +1,71 @@
+from collections import deque
+T=int(input())
+result=[]
+
+for _ in range(T):
+    Max=10000
+    visited = [[] for _ in range(Max+1)]
+
+    A,B=map(int,input().split())
+
+    def str_conversion(alphabet,num):
+        if len(num) != 4:
+            n = 4-len(num)
+            num= '0'*n + num
+        
+        if alphabet == 'L':
+            num=num[1:]+num[:1]
+
+        elif alphabet =="R":
+            num=num[3:]+num[:3]
+        
+        return int(num)
+
+
+    def commend(chars,n):
+        if chars == 'D':
+            n*=2
+            if n>9999:
+                n%=10000
+        
+        elif chars == 'S':
+            n-=1
+            if n<=0:
+                n=9999
+            
+
+        elif chars == 'L':
+            n=str_conversion(chars,str(n))
+        elif chars == 'R':
+            n=str_conversion(chars,str(n))
+
+        return n
+
+
+    def Bfs(A):
+        que=deque()
+        que.append(A)
+
+        while que:
+            num=que.popleft()
+
+            if num == B:
+                result=''.join(visited[num])
+                return result
+
+            for i in ['D','S','L','R']:
+                check=commend(i,num)
+                if not visited[check]:
+                    visited[check]=visited[num]+list(i)
+                    que.append(check)
+
+        
+
+
+    result.append(Bfs(A))
+
+for i in result:
+    print(i)
+
+    
+    

@@ -1,0 +1,26 @@
+from sys import stdin
+
+sentence1=list(stdin.readline().strip())
+sentence2=[]
+M=int(stdin.readline())
+
+
+for _ in range(M):
+    command=stdin.readline().split()
+
+    if command[0] == 'L':
+        if sentence1:
+            sentence2.append(sentence1.pop())
+
+    elif command[0] == 'D':
+        if sentence2:
+            sentence1.append(sentence2.pop())
+    
+    elif command[0] == 'B':
+        if sentence1:
+            sentence1.pop()
+    else:
+        sentence1.append(command[1])
+
+sentence1.extend(reversed(sentence2))
+print(''.join(sentence1))

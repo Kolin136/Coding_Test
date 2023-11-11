@@ -1,0 +1,36 @@
+n=int(input())
+
+stack_list=[int(input()) for _ in range(n)]
+num_list=[]
+sign=[]
+num=1
+temp=True
+
+for i in stack_list:
+    if num_list:
+        if i == num_list[-1]:
+            num_list.pop()
+            sign.append('-')
+            continue
+        elif i < num_list[-1]:
+            temp=False
+
+    while num <= n:
+        if i == num:
+            num_list.append(num)
+            sign.append('+')
+            num_list.pop()
+            sign.append('-')
+            num += 1
+            break
+
+        else:
+            num_list.append(num)
+            num += 1
+            sign.append('+')
+   
+if temp == False:
+    print("NO")
+else:
+    for i in sign:
+        print(i)

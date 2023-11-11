@@ -1,0 +1,12 @@
+import sys
+T=int(input())
+
+for _ in range(T):
+    result=""
+    sentence=list(map(list,sys.stdin.readline().split()))
+    for word in sentence:
+        while len(word) >0 :
+            result= f"{result}{word.pop()}"
+        result +=" "
+    print(result)
+

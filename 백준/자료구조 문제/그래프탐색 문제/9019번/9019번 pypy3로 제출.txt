@@ -1,0 +1,41 @@
+from collections import deque
+import sys
+T=int(sys.stdin.readline())
+
+
+for _ in range(T):
+    
+    visited = [False]*10000
+    A,B=map(int,sys.stdin.readline().split())
+    que=deque()
+    que.append((A,""))
+    
+    visited[A]=True
+
+    while que:
+        num,message = que.popleft()
+        
+        if num == B:
+            print(message)
+            break
+
+        num2 = (2*num)%10000
+        if not visited[num2]:
+            que.append((num2,message+"D"))
+            visited[num2] = True
+        # 2
+        num2 = (num-1)%10000
+        if not visited[num2]:
+            que.append((num2,message+"S"))
+            visited[num2] = True
+        # 3
+        num2 = (10*num+(num//1000))%10000
+        if not visited[num2]:
+            que.append((num2,message+"L"))
+            visited[num2] = True
+            
+        # 4
+        num2 = (num//10+(num%10)*1000)%10000
+        if not visited[num2]:
+            que.append((num2,message+"R"))
+            visited[num2] = True

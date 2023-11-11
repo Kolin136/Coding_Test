@@ -1,0 +1,30 @@
+from sys import stdin
+
+sentence=list(stdin.readline().strip())
+
+M=int(stdin.readline())
+idx=len(sentence)
+result=""
+for _ in range(M):
+    command=stdin.readline().split()
+
+    if command[0]=='L':
+        idx -=1
+        if idx <0:
+            idx=0
+    
+    if command[0]=='D':
+        idx +=1
+    
+    if command[0]=='B':
+        idx-=1
+        if idx<0:
+            idx=0
+        else:
+            sentence= sentence[:idx] + sentence[idx+1:]
+
+    if command[0] =='P':
+        sentence= sentence[:idx] + list(command[1]) + sentence[idx:]
+        idx +=1
+
+print(''.join(sentence))

@@ -1,0 +1,44 @@
+<1번째>
+
+def selection_sort(a):
+    for i in range(len(a)):
+        minimum = a[i]
+        index = i+1
+        
+        while index < len(a):
+            if minimum < a[index]:
+                index +=1
+                continue
+            else:
+                minimum = a[index]
+                index +=1
+                continue
+        exchage = a.index(minimum)
+        a[i],a[exchage] = minimum,a[i]
+        
+    return a
+        
+a=[4,2,7,1,9,3]
+print(selection_sort(a))
+
+<2번째>
+
+def selection_sort(a):
+    for i1 in range(len(a)-1):
+        minimum = a[i1]
+        index = i1
+        for i2 in range(i1+1,len(a)):
+            if minimum > a[i2]:
+                minimum = a[i2]
+                index = i2
+        a[i1],a[index]=minimum,a[i1]
+        
+    return a
+        
+a=[4,2,7,1,9,3]
+print(selection_sort(a))
+
+
+
+
+

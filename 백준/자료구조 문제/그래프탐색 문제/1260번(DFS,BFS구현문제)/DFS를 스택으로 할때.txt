@@ -1,0 +1,26 @@
+import sys
+from collections import deque
+input = sys.stdin.readline
+
+def dfs():
+    stk = [V]
+    visit = [False]*(N+1)
+    while stk:
+        cur = stk.pop()
+        if visit[cur]: continue
+        visit[cur] = True
+        print(cur, end=" ")
+        stk.extend(G[cur][::-1])
+    print()
+
+
+
+N, M, V = map(int, input().split())
+G = [[] for _ in ' '*(N+1)]
+for _ in ' '*M:
+    u, v = map(int, input().split())
+    G[u].append(v)
+    G[v].append(u)
+G = list(map(sorted, G))
+print('리스트체크',G)
+dfs()

@@ -1,0 +1,45 @@
+# sys.setrecursionlimit(10000) 를 입력하지 않으면 런타임 오류가 발생한다.
+# 파이썬의 기본 재귀 한도는 1000이고, 재귀 깊이가 1000을 넘어갈 경우 모듈을 추가해야 한다
+
+import sys
+sys.setrecursionlimit(10000)
+
+T=int(sys.stdin.readline())
+#↓ 상하좌우 순서(그래프 모양이 아파트 단지 문제랑 달라서 상하좌우 판정이 다르다 )
+move=[(0,-1),(0,1),(-1,0),(1,0)]
+
+def Dfs(x,y):
+   
+    for i in range(4):
+            mx = x + move[i][0]
+            my = y + move[i][1]
+            if 0<= mx <M and 0<= my <N:
+                if graph[mx][my] == 1:                    
+                    graph[mx][my]=0
+                    Dfs(mx,my)
+
+
+count_list=[]
+
+for _ in range(T):
+    M,N,K=map(int,sys.stdin.readline().split())
+    graph=[[0]*N for _ in range(M)]
+    
+    for _ in range(K):
+        a,b= map(int,sys.stdin.readline().split())
+        graph[a][b] = 1
+
+    
+    earthworm_count=0  
+      
+
+    for i in range(M):
+        for k in range(N):
+            if graph[i][k]== 1:
+                Dfs(i,k)
+                earthworm_count += 1
+
+    count_list.append(earthworm_count)
+
+for i in count_list:
+    print(i)        

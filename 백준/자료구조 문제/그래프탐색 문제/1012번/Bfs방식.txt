@@ -1,0 +1,46 @@
+import sys
+from collections import deque
+T=int(sys.stdin.readline())
+#↓ 상하좌우 순서(그래프 모양이 아파트 단지 문제랑 달라서 상하좌우 판정이 다르다 )
+move=[(0,-1),(0,1),(-1,0),(1,0)]
+
+def Bfs(x,y):
+    que=deque()
+    que.append((x,y))
+    graph[x][y] = 0
+	
+    while que:
+        x,y = que.popleft()
+
+        for i in range(4):
+            mx = x + move[i][0]
+            my = y + move[i][1]
+            if 0<= mx <M and 0<= my <N:
+                if graph[mx][my] == 1:
+                    que.append((mx,my))
+                    graph[mx][my] = 0
+    
+count_list=[]
+
+for _ in range(T):
+    M,N,K=map(int,sys.stdin.readline().split())
+    graph=[[0]*N for _ in range(M)]
+    
+    for _ in range(K):
+        a,b= map(int,sys.stdin.readline().split())
+        graph[a][b] = 1
+
+    
+    earthworm_count=0  
+      
+
+    for i in range(M):
+        for k in range(N):
+            if graph[i][k]== 1:
+                Bfs(i,k)
+                earthworm_count += 1
+
+    count_list.append(earthworm_count)
+
+for i in count_list:
+    print(i)        

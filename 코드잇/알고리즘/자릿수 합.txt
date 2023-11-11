@@ -1,0 +1,30 @@
+<첫번째 방법>
+
+# n의 각 자릿수의 합을 리턴
+def sum_digits(n):
+    s=str(n)
+    if len(s)==0:
+        return 0
+    else:
+        
+        return int(s[len(s)-1]) + sum_digits(s[:len(s)-1])
+
+# 테스트 코드
+print(sum_digits(22541))
+print(sum_digits(92130))
+print(sum_digits(12634))
+print(sum_digits(704))
+print(sum_digits(3755))
+
+<두번째 방법>
+def sum_digits(n):
+    if n == 0:
+        return 0
+    return (n % 10) + sum_digits((n //10))
+
+# 테스트 코드
+print(sum_digits(22541))
+print(sum_digits(92130))
+print(sum_digits(12634))
+print(sum_digits(704))
+print(sum_digits(3755))
