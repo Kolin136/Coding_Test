@@ -1,0 +1,15 @@
+import math
+def solution(n):
+    answer = 0
+    data=[]
+    for i in range(1,int(math.sqrt(n)+1)):
+        if i*i==n:
+            data.append(i)
+        elif n % i == 0:
+            data.append(i)
+            data.append(n//i)
+
+    answer= sum(data)
+    
+    
+    return answer

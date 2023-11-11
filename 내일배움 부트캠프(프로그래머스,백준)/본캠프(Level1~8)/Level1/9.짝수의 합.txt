@@ -1,0 +1,6 @@
+def solution(n):
+    answer = 0
+   
+    answer = sum(list(range(0,n+1,2)))
+   
+    return answer
