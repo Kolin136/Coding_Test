@@ -1,0 +1,27 @@
+import java.util.*;
+class Solution {
+    public long[] solution(int x, int n) {
+        
+        
+        long[] answer = new long[n];
+        
+        for(int i=1; i<=n; i++){
+              answer[i-1] = (long)x*i;  // 오버플로우 일어날수도 있어서
+              
+           }
+        
+        return answer;
+    }
+}
+
+---------------------------------파이썬-------------------------------------------------------------
+
+def solution(x, n):
+    answer = []
+    
+    for i in range(1,n+1):
+        answer.append(x*i)
+    
+    
+    
+    return answer
