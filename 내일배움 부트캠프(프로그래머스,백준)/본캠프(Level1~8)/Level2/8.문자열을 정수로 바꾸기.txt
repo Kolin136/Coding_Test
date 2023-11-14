@@ -1,0 +1,16 @@
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        
+        if(s.startsWith("-")){
+                  answer = Integer.parseInt( s.substring(1, s.length()) ) *-1;
+            }
+            else{
+                  answer = Integer.parseInt(s);
+            }
+
+        return answer;
+    }
+}
+
+// 알고보면 int answer = Integer.parseInt(s); 한줄로 가능 (자바,파이썬 둘다 변환 해주는 메소드가 자동으로 앞에 부호를 인식해주는듯)
