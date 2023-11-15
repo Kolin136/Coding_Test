@@ -1,0 +1,7 @@
+def solution(n):
+    answer = 0
+    
+    num_list = sorted( [i for i in str(n) ] ,reverse=True)
+    answer = int("".join(num_list))
+
+    return answer
