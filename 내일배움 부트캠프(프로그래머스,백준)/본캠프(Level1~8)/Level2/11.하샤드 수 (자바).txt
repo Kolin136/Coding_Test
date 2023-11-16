@@ -1,0 +1,51 @@
+def solution(x):
+    answer = False
+    
+    if x % sum( int(i) for i in str(x)) == 0:
+        answer = True
+
+
+    return answer
+
+
+------------------------------------자바 --------------------------------------------------
+
+class Solution {
+    public boolean solution(int x) {
+      boolean answer = false;
+
+      String str_x = String.valueOf(x);
+      int str_sum = 0;
+
+      for (int i = 0; i < str_x.length(); i++) {
+            str_sum += Integer.parseInt( str_x.substring(i,i+1));          
+      }
+
+      if(x % str_sum == 0){
+            answer = true;
+      }
+
+      return answer;
+    }
+}
+
+// 위에 방법으로 하면 0.0x ms대 인데 밑에 방법으로 하면 0.1x ms대이다. 
+
+class Solution {
+    public boolean solution(int x) {
+      boolean answer = false;
+
+      String[] str_x = String.valueOf(x).split("");
+      int str_sum = 0;
+
+      for (String s : str_x) {
+            str_sum += Integer.valueOf(s);
+      }
+
+      if(x % str_sum == 0){
+            answer = true;
+      }
+
+      return answer;
+    }
+}
