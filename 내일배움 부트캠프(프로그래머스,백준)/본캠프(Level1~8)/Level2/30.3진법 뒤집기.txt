@@ -1,0 +1,33 @@
+import math
+def solution(n):
+    answer = 0
+
+    str_num=""
+
+    while n>0:
+        str_num += str(n % 3)
+        n = n//3
+
+    str_len = len(str_num)-1
+
+    for i in range(str_len,-1,-1):
+        answer += int(math.pow(3,str_len-i)) * int(str_num[i])
+
+
+    return answer
+
+
+-------------더 좋은 풀이 ------------------------
+
+def solution(n):
+    answer = 0
+
+    str_num=""
+
+    while n>0:
+        str_num += str(n % 3)
+        n = n//3
+
+    answer = int(str_num,3)
+
+    return answer

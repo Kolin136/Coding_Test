@@ -1,0 +1,11 @@
+def solution(s):
+    answer = ""
+
+    s_list= s.split(" ")
+    for i in s_list:
+        for k in range(len(i)):
+            answer+= i[k].upper() if k % 2 == 0 else i[k].lower()
+            
+        answer+=" "
+
+    return answer[:-1]

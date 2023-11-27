@@ -1,0 +1,28 @@
+def solution(n, m):
+    a = n; b=m
+    r = 1
+    while r>0:
+        r = a % b
+        a,b = b,r
+    
+    answer = [a , n*m//a]
+
+    return answer
+
+
+-----------------다른사람 람다식 이용한 멋진 풀이------------------------------------
+
+def solution(n, m):
+    gcd = lambda a,b : b if not a%b else gcd(b, a%b)
+    lcm = lambda a,b : a*b//gcd(a,b)
+    return [gcd(n, m), lcm(n, m)]
+
+-----------------파이썬 스러운 다른사람 풀이 ------------------------------------------
+def gcdlcm(a, b):
+    c,d = max(a, b), min(a, b)
+    t = 1
+    while t>0:
+        t = c%d
+        c, d = d, t
+    answer = [ c, int (a*b/c)]
+    return answer
