@@ -1,0 +1,17 @@
+def solution(s, n):
+    answer = ''
+
+    for i in range(len(s)):
+        check = ord(s[i])+n
+
+        if s[i] == " ":
+            answer +=" "
+        elif 65<= ord(s[i]) <= 90:    
+            answer +=  chr(65 +(check-91))  if check > 90 else chr(check)
+        else:
+            answer +=  chr(97 +(check-123))  if check > 122 else chr(check)
+
+    return answer
+
+# 대문자 65~90
+# 소문자 97~122
