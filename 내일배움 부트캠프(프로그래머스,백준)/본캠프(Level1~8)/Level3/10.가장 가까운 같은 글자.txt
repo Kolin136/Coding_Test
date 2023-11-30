@@ -1,0 +1,27 @@
+----------------몇몇 케이스 속도 느린 내 풀이 --------------------------
+def solution(s):
+    answer = [-1]
+    for i in range(1,len(s)):
+        for k in range(i-1,-1,-1):
+            if s[i] == s[k]: 
+                answer.append(i-k)
+                break
+
+        if len(answer) == i:
+            answer.append(-1)        
+           
+    return answer
+
+
+---------------속도 빠른 다른 사람 풀이--------------------------------
+def solution(s):
+    answer = []
+    dic = dict()
+    for i in range(len(s)):
+        if s[i] not in dic:
+            answer.append(-1)
+        else:
+            answer.append(i - dic[s[i]])
+        dic[s[i]] = i
+
+    return answer
