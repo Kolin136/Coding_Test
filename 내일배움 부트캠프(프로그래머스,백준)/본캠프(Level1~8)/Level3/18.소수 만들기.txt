@@ -1,0 +1,14 @@
+from itertools import combinations
+import math
+
+def solution(nums):
+    answer = 0
+
+    for i in combinations(nums,3):
+        for k in range(2,int(math.sqrt(sum(i)))+1):
+            if sum(i) % k == 0: 
+                break
+        else:
+            answer+=1
+
+    return answer

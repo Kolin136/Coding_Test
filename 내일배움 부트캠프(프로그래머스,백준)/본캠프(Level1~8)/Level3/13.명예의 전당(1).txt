@@ -1,0 +1,11 @@
+def solution(k, score):
+    answer = []
+    check=[]
+
+    for i in score:
+        check.append(i)
+        if k < len(check):
+            check.remove(min(check))
+        answer.append(min(check))
+
+    return answer

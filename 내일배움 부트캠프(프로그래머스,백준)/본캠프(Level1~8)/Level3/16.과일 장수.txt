@@ -1,0 +1,16 @@
+def solution(k, m, score):
+    answer = 0
+    score.sort(reverse=True)
+
+    for i in range(len(score)//m):
+        answer+=min(score[i*m : i*m+m])* m
+        
+    return answer
+
+---------------------다른 사람 믜친 풀이----------------------------------
+def solution(k, m, score):
+    return sum(sorted(score)[len(score)%m::m])*m
+
+
+----------------------더욱 씝믜친 이해 안가는 풀이 -----------------------------------
+solution = lambda _, m, s: sum(sorted(s)[-m::-m]) * m 

@@ -1,0 +1,11 @@
+def solution(a, b):
+    
+    day=["FRI","SAT","SUN","MON","TUE","WED","THU"]
+
+    month=[0,31,29,31,30,31,30,31,31,30,31,30,31]
+
+    check= (sum(month[:a])+b) % 7
+
+    answer = day[check-1]
+
+    return answer
