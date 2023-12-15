@@ -1,0 +1,15 @@
+def solution(n, lost, reserve):
+    
+    check_lost= sorted([i for i in lost if i not in reserve])
+    check_reserve= sorted([i for i in reserve if i not in lost])
+   
+    for i in check_reserve:
+        if i-1 in check_lost:
+            check_lost.remove(i-1)
+           
+        elif i+1 in check_lost:
+            check_lost.remove(i+1)
+  
+
+    return n - len(check_lost)
+    

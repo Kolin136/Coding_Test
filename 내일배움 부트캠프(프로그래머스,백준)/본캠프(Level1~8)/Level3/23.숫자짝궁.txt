@@ -1,0 +1,19 @@
+def solution(X, Y):
+
+    result=[]
+
+    for i in range(9,-1,-1):
+        if (str(i) in X) and (str(i) in Y):
+            x_count= X.count(str(i))
+            y_count= Y.count(str(i))
+            result.append(str(i)*y_count if x_count>y_count else str(i)*x_count)
+    
+    if not result:
+        return "-1"
+    
+    answer= "".join(result)
+
+    if answer[0] == "0":
+        return "0"   
+
+    return answer
