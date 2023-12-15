@@ -1,0 +1,21 @@
+def solution(keymap, targets):
+    answer = []
+    
+    for msg in targets:
+        result=0
+        break_check=True
+        for chr in msg:
+            check=100
+            for k in keymap:
+                idx = k.find(chr)
+                if idx != -1 and check > idx: check = idx
+                
+            if check == 100: 
+                answer.append(-1)
+                break_check = False
+                break
+            else: result+= check+1
+        
+        if break_check: answer.append(result)
+   
+    return answer
