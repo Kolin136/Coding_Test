@@ -19,3 +19,26 @@ def solution(keymap, targets):
         if break_check: answer.append(result)
    
     return answer
+
+====================더 좋은 풀이법(2중 반복문) ========================
+def solution(keymap, targets):
+    answer = []
+    keymap_dic={}
+
+    for msg in keymap:
+        for idx,vlu in enumerate(msg):
+            keymap_dic[vlu] = min(keymap_dic[vlu],idx+1) if vlu in keymap_dic else idx+1
+    
+    for msg in targets:
+        check=0
+        for i in msg:
+            if i in keymap_dic: check += keymap_dic[i]
+            else: 
+                check= -1
+                break
+        answer.append(check)
+
+
+    return answer
+
+먼저 keymap에 있는 모든 하나하나 문자들을 보면서 문자 한개를 Key,해당 문자 한개 인덱스값을 value로 갖는 딕셔너리 만든다.  

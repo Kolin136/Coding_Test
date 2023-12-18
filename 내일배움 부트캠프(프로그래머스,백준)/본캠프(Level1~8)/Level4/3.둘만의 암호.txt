@@ -1,0 +1,15 @@
+def solution(s, skip, index):
+    answer = ''
+    check=[ord(i) for i in skip]
+
+    for i in s:
+        count=index
+        i_num= ord(i)
+        while count !=0:
+            i_num+=1
+            if i_num > ord('z'): i_num=ord('a')
+            if i_num not in check: count-=1
+
+        answer+=chr(i_num)
+
+    return answer
