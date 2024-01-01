@@ -1,0 +1,19 @@
+def solution(wallpaper):
+    answer = []
+    row_min=50; row_max=0
+    col_min=50; col_max=0
+
+    for i in range(len(wallpaper)):
+        for k in range(len(wallpaper[i])):
+            if wallpaper[i][k] == "#":
+                if row_min > i: row_min=i
+                if row_max < i+1: row_max=i+1
+                if col_min > k: col_min=k
+                if col_max < k+1: col_max=k+1
+
+    answer.append(row_min)
+    answer.append(col_min)
+    answer.append(row_max)
+    answer.append(col_max)
+
+    return answer

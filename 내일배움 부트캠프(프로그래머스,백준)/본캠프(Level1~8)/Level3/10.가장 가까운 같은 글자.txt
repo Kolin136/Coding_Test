@@ -11,6 +11,15 @@ def solution(s):
             answer.append(-1)        
            
     return answer
+====================속도는 모르겠고 더 짧게 푼 코드===================
+def solution(s):
+    answer = []
+
+    for i in range(len(s)):
+        check = s[:i].rfind(s[i])
+        answer.append(check  if check == -1 else i-check)
+
+    return answer
 
 
 ---------------속도 빠른 다른 사람 풀이--------------------------------

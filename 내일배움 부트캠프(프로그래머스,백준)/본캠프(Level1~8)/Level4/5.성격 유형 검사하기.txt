@@ -1,0 +1,22 @@
+def solution(survey, choices):
+    answer = ''
+    mbti_dic={'R':0,'T':0,'C':0,'F':0,'J':0,'M':0,'A':0,'N':0}
+    mbti_list=['R','T','C','F','J','M','A','N']
+
+    for i in range(len(survey)):
+        check= 4-choices[i]
+        if check > 0:
+            mbti_dic[survey[i][0]]+= check
+        else:
+            mbti_dic[survey[i][1]]+= abs(check)
+   
+   
+    for i in range(0,len(mbti_list),2):
+        if mbti_dic[mbti_list[i]] == mbti_dic[mbti_list[i+1]]:
+            answer+=mbti_list[i]
+        elif mbti_dic[mbti_list[i]] > mbti_dic[mbti_list[i+1]]:  
+            answer+=mbti_list[i]
+        else:
+            answer+=mbti_list[i+1]
+
+    return answer

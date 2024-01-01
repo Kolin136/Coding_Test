@@ -1,0 +1,27 @@
+from collections import deque
+N=int(input())
+
+que= deque(i for i in range(1,N+1))
+
+check=2
+while len(que) > 1:
+    if check % 2 == 0:  que.popleft()
+    else:  que.append(que.popleft())  
+    check +=1
+
+print(que[0])
+
+
+======================더 좋은 풀이 ==========================
+
+from collections import deque
+N=int(input())
+
+que= deque(i for i in range(1,N+1))
+
+
+while len(que) > 1:
+    que.popleft()
+    que.rotate(-1)
+
+print(que[0])

@@ -1,0 +1,47 @@
+from itertools import groupby
+from sys import stdin
+
+N,Q=map(int,stdin.readline().split())
+
+back_stack=[]
+front_stack=[]
+now_page=None
+
+for i in range(Q):
+    check, *rest = stdin.readline().split()
+    if rest: num = int(rest[0])
+    else: num = None 
+    
+
+    if check == 'B' and len(back_stack) != 0:
+        front_stack.append(now_page)
+        now_page = back_stack.pop()
+
+    elif check == 'F' and len(front_stack) != 0:
+        back_stack.append(now_page)
+        now_page = front_stack.pop()
+    
+    elif check == 'A':
+        front_stack.clear()
+        if now_page != None:
+            back_stack.append(now_page)
+        now_page = num
+
+    elif check == 'C':
+        back_stack=[k for k, _ in groupby(back_stack)]
+
+
+print(now_page)
+
+if not back_stack: print(-1)
+else:
+    while back_stack:
+        print(back_stack.pop(), end=" ")
+    print("")
+
+
+if not front_stack: print(-1)
+else:
+    while front_stack:
+        print(front_stack.pop(), end=" ")
+    print("")

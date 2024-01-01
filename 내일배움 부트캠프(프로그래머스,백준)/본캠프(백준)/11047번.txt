@@ -1,0 +1,16 @@
+from sys import stdin
+
+N,K=map(int,stdin.readline().split())
+
+moneyt_list=[int(stdin.readline()) for _ in range(N)]
+result=0
+
+for i in range(len(moneyt_list)-1,-1,-1):
+    if moneyt_list[i] > K: continue
+    else: 
+       result += K // moneyt_list[i]
+       K %= moneyt_list[i] 
+       
+print(result)
+
+
