@@ -1,0 +1,36 @@
+st=list(input())
+bomb=list(input())
+bomb.reverse()
+stack=[]
+
+for _ in range(len(st)):
+    stack.append(st.pop())
+
+    if (len(stack) >= len(bomb)) and (stack[len(stack)-len(bomb):] == bomb):
+        for _ in range(len(bomb)):
+            stack.pop()
+
+if len(stack) == 0:
+    print("FRULA")
+else:
+    stack.reverse()
+    print("".join(stack))
+
+
+
+==================시간 초과==================
+st=input()
+bomb=input()
+
+while bomb in st:
+    st= st.replace(bomb,'')
+
+
+if len(st) == 0:
+    print("FRULA")
+else:    
+    print(st)
+
+
+
+
