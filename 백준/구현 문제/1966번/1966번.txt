@@ -1,0 +1,32 @@
+from sys import stdin
+from collections import deque
+K=int(stdin.readline())
+
+for _ in range(K):
+    result = 0
+    N,M=map(int,stdin.readline().split())
+
+    que_list = list(map(int,stdin.readline().split()))
+    sort_list= sorted(que_list)
+
+    que= deque()
+    for i in enumerate(que_list):
+        que.append(i)
+    
+    priority = sort_list.pop()
+    while True:
+        check= que.popleft()
+        if priority == check[1]:
+            result +=1
+            if check[0] == M:
+                print(result)
+                break
+            else:
+                priority = sort_list.pop()
+        else:
+            que.append(check)
+
+
+
+
+   
