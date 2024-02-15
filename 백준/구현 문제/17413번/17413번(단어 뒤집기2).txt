@@ -1,0 +1,29 @@
+from collections import deque
+S=input()
+
+que= deque()
+result=""
+
+check = False
+for i in range(len(S)):
+    if S[i] == "<":
+        result += "".join(que)
+        result += S[i]
+        check = True
+        que.clear()
+    elif S[i] == ">":
+        result += S[i]
+        check = False
+        que.clear()
+    elif check == True:
+        result += S[i]
+    elif S[i] == " " and check == False:
+        result += "".join(que)
+        result += " "
+        que.clear()
+    elif check == False:
+        que.appendleft(S[i])    
+
+result += "".join(que)
+
+print(result)
