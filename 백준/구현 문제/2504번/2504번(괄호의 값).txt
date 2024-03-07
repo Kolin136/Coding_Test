@@ -1,0 +1,32 @@
+sign = input()
+stack = []
+check_num = 1
+save_value = 0
+
+for i in range(len(sign)):
+    check = sign[i]
+    if check == "(":
+        check_num *=2
+        stack.append(check)
+    elif check == "[":
+        check_num *=3
+        stack.append(check)
+    elif check == ")":
+        if not stack or stack[-1] =="[":
+            save_value = 0
+            break
+        elif sign[i-1] == "(":
+            save_value += check_num
+        check_num //= 2
+        stack.pop()
+    else:
+        if not stack or stack[-1] =="(":
+            save_value = 0
+            break
+        elif sign[i-1] == "[":
+            save_value += check_num
+        check_num //= 3
+        stack.pop()
+if stack:
+    save_value =0
+print(save_value)
