@@ -1,0 +1,27 @@
+from sys import stdin
+from collections import deque
+N,K = map(int,stdin.readline().split())
+belt = deque(map(int,stdin.readline().split()))  
+robot = deque( [False] * N )
+count=0
+
+while True:
+    count += 1
+    # 첫번째 과정
+    belt.rotate(1) 
+    robot[-1] = False
+    robot.rotate(1)
+    robot[-1] = False
+    # 두번째 과정
+    for i in range(N-2,0,-1):
+        if robot[i] and  belt[i+1] >0 and robot[i+1] == False:
+            robot[i],robot[i+1] = False,True
+            belt[i+1] -= 1   
+    #세번재 과정
+    if belt[0] > 0:
+        robot[0] = True
+        belt[0] -= 1
+    if belt.count(0) >= K:
+        break
+print(count) 
+
