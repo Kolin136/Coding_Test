@@ -1,0 +1,44 @@
+from collections import deque
+class Solution:
+
+    moveDic = { 'U':(-1,0),'D':(1,0),'R':(0,1),'L':(0,-1) }
+    moveList = ['U','D','R','L']
+    x,y=0,0
+    result = []
+
+    def __init__(self):
+        self.result=[]
+        
+
+    def alphabetBoardPath(self, target: str) -> str:
+        
+        for i in target:
+            self.result.append(self.BFS(i))
+
+        return "".join(self.result)
+        
+    def BFS(self,chr):
+        que=deque([(self.x,self.y)])
+        board = ["abcde", "fghij", "klmno", "pqrst", "uvwxy", "z"]
+        visited = [ [1,1,1,1,1] for _ in range(5)] 
+        visited.append([1])
+
+        visited[self.y][self.x] = ""
+        
+        
+        while que:
+            x,y = que.popleft()
+
+            if board[y][x] == chr:
+                self.x = x
+                self.y = y
+                return visited[y][x]+'!'
+            
+            for i in self.moveList:
+                move_x = x + self.moveDic[i][1] 
+                move_y = y + self.moveDic[i][0] 
+
+                if 0<= move_y < len(board) and 0<= move_x < len(board[move_y]) and visited[move_y][move_x] == 1:
+                    visited[move_y][move_x] = visited[y][x] + i
+                    que.append((move_x,move_y))
+
