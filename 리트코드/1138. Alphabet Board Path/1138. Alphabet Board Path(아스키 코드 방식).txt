@@ -1,0 +1,44 @@
+class Solution:
+    def alphabetBoardPath(self, target: str) -> str:
+        result = []
+        now_idx=(0,0)
+        for i in target:
+            check_idx = divmod(ord(i)-ord('a'),5)
+            y = check_idx[0] - now_idx[0]
+            x = check_idx[1] - now_idx[1]
+
+            if y <0:
+                result.append("U" * -y )
+            if x < 0:
+                result.append("L" * -x )
+            if y > 0:
+                result.append("D" * y )
+            if x >0:
+                result.append("R" * x )    
+            
+            result.append("!")
+
+            now_idx = check_idx
+
+        
+        return "".join(result)
+
+=================================================================================================
+# 다른 사람 방식 - 더 깔끔한 코드
+
+class Solution:
+    def alphabetBoardPath(self, target: str) -> str:
+        x, y = 0, 0
+        result = []
+        for c in target:
+            y1, x1 = divmod(ord(c)-ord('a'), 5)
+            result.append('U' * max(y-y1, 0))
+            result.append('L' * max(x-x1, 0))
+            result.append('R' * max(x1-x, 0))
+            result.append('D' * max(y1-y, 0))
+            result.append('!')
+            x, y = x1, y1
+
+        return "".join(result)
+        
+    
