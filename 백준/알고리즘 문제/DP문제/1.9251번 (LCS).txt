@@ -1,0 +1,13 @@
+one_str = input()
+two_str = input()
+
+lcs = [ [0]*(len(one_str)+1) for _ in range(len(two_str)+1) ]
+
+for i in range(len(two_str)):
+    for k in range(len(one_str)):
+        if two_str[i] == one_str[k]:
+            lcs[i+1][k+1] = lcs[i][k] + 1 
+        else:
+            lcs[i+1][k+1] = max(lcs[i+1][k],lcs[i][k+1])
+
+print(lcs[len(two_str)][len(one_str)])
