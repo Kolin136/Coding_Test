@@ -27,3 +27,40 @@ for i in range(len(S)):
 result += "".join(que)
 
 print(result)
+
+
+===========================더 빠른 방법 ============================
+from collections import deque
+S = input()
+dq = deque(list(S))
+tag_check = False
+result_list=[]
+stack=[]
+
+for _ in range(len(dq)):
+  popleft_chr = dq.popleft()
+  if popleft_chr == "<":
+    tag_check = True
+    stack.reverse()
+    result_list += stack
+    stack.clear()
+    result_list.append(popleft_chr)
+  elif popleft_chr == ">":
+    tag_check = False
+    result_list.append(popleft_chr)
+  elif tag_check:
+    result_list.append(popleft_chr)
+  elif tag_check == False and popleft_chr != " ":
+    stack.append(popleft_chr)
+  else:
+    stack.reverse()
+    result_list += stack
+    stack.clear()
+    result_list.append(" ")
+
+if stack:
+  stack.reverse()
+  result_list += stack
+  stack.clear()
+
+print("".join(result_list))
