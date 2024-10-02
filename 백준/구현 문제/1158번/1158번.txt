@@ -14,3 +14,17 @@ while check_list:
     idx += K-1
 
 print("<",", ".join(result_list)[:],">", sep='')
+
+
+=======================deque의 rotate 이용=======================
+from collections import deque
+N,K = map(int, input().split())
+result = []
+
+dq = deque([i for i in range(1, N+1)])
+while dq:
+  dq.rotate(-(K-1))
+  result.append(str(dq.popleft()))
+
+print("<",", ".join(result),">",sep="")
+
