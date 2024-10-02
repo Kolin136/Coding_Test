@@ -1,0 +1,38 @@
+import collections
+N, M, B = map(int, input().split())
+graph = [list(map(int, input().split())) for _ in range(N)]
+result_time = float('inf')
+result_height = 0
+
+height_check = collections.defaultdict(int)
+
+for i in graph:
+  for k in i:
+    height_check[k] += 1
+
+max_height = max(height_check.keys())
+sort_height_check = sorted(height_check.items(),key=lambda x: x[0], reverse = True)
+
+for i in range(max_height,-1,-1):
+  check_inven = B
+  check_time = 0
+  check = True
+  for k in sort_height_check:
+    if k[0] == i: continue
+    necessary_count = (i - k[0]) * k[1]
+    if necessary_count < 0:
+      check_inven += abs(necessary_count)
+      check_time += abs(necessary_count) * 2
+      continue
+    if check_inven >=necessary_count:
+      check_inven -= necessary_count
+      check_time += necessary_count
+    else:
+      check = False
+      break
+ 
+  if check and check_time < result_time:
+    result_time = check_time
+    result_height = i
+
+print(result_time,result_height)
