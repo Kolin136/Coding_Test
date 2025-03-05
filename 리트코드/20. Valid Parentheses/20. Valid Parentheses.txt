@@ -1,0 +1,10 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        s_dic= { ")":"(" , "}":"{" , "]":"[" }
+        stack = []
+        for char in s:
+            if char not in s_dic:
+                stack.append(char)
+            elif not stack or s_dic[char] != stack.pop():
+                return False
+        return len(stack) == 0
