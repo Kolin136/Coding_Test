@@ -1,0 +1,11 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        nums_dic = {}
+        for i,v in enumerate(nums): nums_dic[v] = i
+
+        for i,v in enumerate(nums):
+            if target-v in nums_dic and i != nums_dic[target-v]:
+                return [i,nums_dic[target-v]]
+
+
+       
