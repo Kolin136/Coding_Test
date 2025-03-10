@@ -1,0 +1,7 @@
+class Solution:
+    def removeDuplicateLetters(self, s):
+        for i in sorted(set(s)):
+            check = s[s.index(i):]
+            if set(s) == set(check):
+                return i + self.removeDuplicateLetters(check.replace(i,''))
+        return ''
