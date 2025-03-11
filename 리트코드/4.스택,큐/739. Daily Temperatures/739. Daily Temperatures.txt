@@ -1,0 +1,13 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        day=[]
+        result=[]
+        
+        for idx,value in enumerate(temperatures):
+            while day and temperatures[day[-1]] < value:
+                result[day[-1]] = idx - day[-1]
+                day.pop()
+            
+            day.append(idx)
+            result.append(0)
+        return result
