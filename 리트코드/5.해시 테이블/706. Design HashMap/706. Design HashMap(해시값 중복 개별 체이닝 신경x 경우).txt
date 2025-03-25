@@ -1,0 +1,17 @@
+class MyHashMap:
+
+    def __init__(self):
+        self.dic = collections.defaultdict(ListNode)
+
+    def put(self, key: int, value: int) -> None:
+        
+        self.dic[key] = ListNode(value)
+ 
+    def get(self, key: int) -> int:
+        if key in self.dic: return self.dic[key].val
+        else: return -1
+
+    def remove(self, key: int) -> None:
+        if key in self.dic:
+            del self.dic[key]
+        
