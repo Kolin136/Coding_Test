@@ -1,0 +1,12 @@
+from collections import defaultdict
+class Solution:
+    def numJewelsInStones(self, jewels: str, stones: str) -> int:
+        result = 0
+        check = defaultdict(int)
+
+        for i in stones:
+            check[i] += 1
+        for i in jewels:
+            if i in check:
+                result += check[i]
+        return result
