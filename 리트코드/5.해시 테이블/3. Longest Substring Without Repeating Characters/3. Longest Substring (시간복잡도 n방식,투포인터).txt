@@ -1,0 +1,16 @@
+from collections import defaultdict
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_index_map = {}  # 문자 → 마지막 인덱스
+        left = 0
+        max_len = 0
+
+        for right, char in enumerate(s):
+            if char in char_index_map and char_index_map[char] >= left:
+                # 중복 발생 → 왼쪽 포인터 이동
+                left = char_index_map[char] + 1
+            
+            char_index_map[char] = right
+            max_len = max(max_len, right - left + 1)
+
+        return max_len
