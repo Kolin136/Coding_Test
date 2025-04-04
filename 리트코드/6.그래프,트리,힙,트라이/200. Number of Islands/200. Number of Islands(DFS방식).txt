@@ -1,0 +1,17 @@
+class Solution:
+    def numIslands(self, grid):
+        def DFS(h,w):
+            if h < 0 or h >= len(grid) or w < 0 or w >= len(grid[0]) or grid[h][w] == "0" : return 
+            grid[h][w] = "0"
+            DFS(h-1,w)
+            DFS(h+1,w)
+            DFS(h,w-1)
+            DFS(h,w+1)
+
+        count = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == "1":
+                    DFS(row,column)
+                    count +=1
+        return count
