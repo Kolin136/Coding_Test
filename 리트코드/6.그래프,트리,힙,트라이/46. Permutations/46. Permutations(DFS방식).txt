@@ -1,0 +1,21 @@
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        result =[]
+        check =[]
+
+        def DFS(nums_list):
+            if len(nums_list) == 0:
+                result.append(check.copy())
+            
+            for i in nums_list:
+                nums_copy = nums_list.copy()
+                nums_copy.remove(i)
+                
+                check.append(i)
+                DFS(nums_copy)
+                check.pop()
+
+            return
+        
+        DFS(nums)
+        return result
