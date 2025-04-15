@@ -1,0 +1,37 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        def DFS(idx,check,nums):
+           
+            if check == target:
+                result.append(nums.copy())
+                return
+            if check > target:
+                return
+
+            for i in range(idx,len(candidates)):
+                DFS(i,check+candidates[i],nums+[candidates[i]])
+                
+            return
+        
+ 
+        DFS(0,0,[])
+        return result
+
+
+====================(방식은 동일 스타일만 다른 책의 방법)==================================================
+class Solution:
+    def combinationSum(self, candidates, target):
+        result = []
+        def DFS(csum,idx,path):
+            if csum <0: return
+            if csum == 0: 
+                result.append(path)
+                return
+            
+            for i in range(idx,len(candidates)):
+                DFS(csum-candidates[i],0,path+[candidates[i]])
+        
+        DFS(target,0,[])
+        return result
+           
