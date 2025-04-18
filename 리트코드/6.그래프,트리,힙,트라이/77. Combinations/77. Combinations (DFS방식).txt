@@ -1,0 +1,19 @@
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        result = []
+        check = []
+        def DFS(start):
+            if len(check) == k:
+                result.append(check.copy())
+                return
+            
+            for i in range(start,n+1):
+                check.append(i)
+                DFS(i+1)
+                check.pop()
+
+
+            return
+        
+        DFS(1)
+        return result
