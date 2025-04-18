@@ -1,0 +1,34 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result =[[]]
+        check = []
+        def DFS(start,k):
+            if len(check) == k:
+                result.append(check.copy())
+                return
+            
+            for i in range(start,len(nums)):
+                check.append(nums[i])
+                DFS(i+1,k)
+                check.pop()
+        
+        for i in range(1,len(nums)+1):
+            DFS(0,i)
+
+        return result
+
+
+=================책의 스타일======================
+class Solution:
+    def subsets(self, nums):
+        result =[]
+        
+        def DFS(idx,path):
+            result.append(path)
+
+            for i in range(idx,len(nums)):
+                DFS(i+1,path+[nums[i]])
+        
+        DFS(0,[])
+
+        return result
