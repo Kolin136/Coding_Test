@@ -1,0 +1,17 @@
+import collections
+class Solution:
+    def findItinerary(self, tickets):
+        result =[]
+        graph_dic = collections.defaultdict(list)
+        for i in sorted(tickets,reverse=True):
+            graph_dic[i[0]].append(i[1])
+            
+      
+        stack = ["JFK"]
+        while stack:
+            while graph_dic[stack[-1]]:
+                stack.append(graph_dic[stack[-1]].pop())
+            result.append(stack.pop())
+
+
+        return result[::-1]
