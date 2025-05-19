@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def mergeTrees(self, root1, root2):
+        if root1 is None and root2 is None:
+            return None
+
+        new_node = TreeNode()
+        l_r1,l_r2 = None,None
+        r_r1,r_r2 = None,None
+
+        if root1: 
+            new_node.val += root1.val
+            l_r1 = root1.left; r_r1 = root1.right
+        if root2: 
+            new_node.val += root2.val
+            l_r2 = root2.left; r_r2 = root2.right
+        
+
+        new_node.left = self.mergeTrees(l_r1,l_r2)
+        new_node.right= self.mergeTrees(r_r1,r_r2) 
+        
+        return new_node
