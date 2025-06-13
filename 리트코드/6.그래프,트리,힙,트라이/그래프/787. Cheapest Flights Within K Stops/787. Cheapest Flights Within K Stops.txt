@@ -1,0 +1,28 @@
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        graph = collections.defaultdict(list)
+        visited = collections.defaultdict(int)
+
+        for a,b,c in flights:
+            graph[a].append((b,c))
+
+        heap =[]
+        heapq.heappush(heap,(0,src,k))
+
+        while heap:
+            price,node,count = heapq.heappop(heap)
+            if node == dst:
+                return price
+            
+            if count >= 0 and (node not in visited or count>visited[node]):
+                visited[node] = count
+                for i,j in graph[node]:
+                    heapq.heappush(heap,(j+price,i,count-1))
+        return -1
+
+
+
+==========================================================
+count>visited[node] 조건이 필요한 이유=> n: 5, flights:[[0,1,10], [1,2,10], [0,2,100], [2,4,10], [4,3,10]], src: 0, dst: 3, k: 2 테스트 케이스로 보면 
+우선순위로 인해 0-1-2-4 갔는데, 4에서 k는 -1이므로 목적지 3에 못간다. 근데 이미 visited에는 2키가 들어있어서
+이후 힙에 (100,1,2) 있는거 처리해야하므로 count>visited[node] 조건이 필요하다. 만약 없었다면 -1리턴하므로 틀린다.
